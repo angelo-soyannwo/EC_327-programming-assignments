@@ -1,0 +1,50 @@
+void writeDataToFile(const char * file){
+
+	std::ofstream myfile;
+	myfile.open(file);
+
+	//loop for writing to a file
+
+		while (ENTRIES>0){
+			fflush(stdin);
+			get_command_code(&command_code);
+			get_parameters();
+			
+			if (checkCode(command_code)){
+				command_code = normalize_input(command_code);
+
+				if (command_code == 'Q'){
+					break;
+				}
+				else{
+					execute_command(command_code);
+				}
+			}
+		ENTRIES--;
+		}
+	}
+	myfile.close()
+
+}
+
+void readDataFromFile(const char * file){
+
+	std::ifstream myfile;
+	myfile.open(file);
+
+	//loop for writing to a file
+		char command_code;
+		while (ENTRIES>0){
+			fflush(stdin);
+		
+			getline(file, command_code);
+			if (checkCode(command_code)){
+				command_code = normalize_input(command_code);
+
+				if (command_code == 'Q'){
+					break;
+				}
+				else{
+					read_file_execute_command(command_code);
+				}
+			}
